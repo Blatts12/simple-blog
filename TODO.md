@@ -15,8 +15,9 @@
 
 ### Blog
 
+- Auth
 - Posts
   - Text
   - Images
-  - Rections
+  - Reactions
 - Comments
