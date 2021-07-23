@@ -4,7 +4,6 @@
 - Register
 - Logout
 - Add Comment
-- Add Reaction
 
 ### Blogger
 
@@ -17,7 +16,7 @@
 
 - Auth
 - Posts
+  - Markdown
   - Text
   - Images
-  - Reactions
 - Comments
