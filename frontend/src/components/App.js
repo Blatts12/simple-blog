@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { Alert } from "react-bootstrap";
 
 class App extends Component {
   render() {
     return (
       <>
-        <h1>Siema to ja Zbychu</h1>
+        <Alert variant="primary">Siema to ja Zbychu</Alert>
       </>
     );
   }
