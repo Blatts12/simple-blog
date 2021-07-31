@@ -3,14 +3,15 @@ from rest_framework import generics
 from blog.serializers import CommentSerializer, PostSerializer
 from rest_framework import viewsets, permissions
 from .models import Comment, Post
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly, IsBloggerOrIsStaffOrReadOnly
 
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
-        IsOwnerOrReadOnly
+        IsBloggerOrIsStaffOrReadOnly,
+        IsOwnerOrReadOnly,
     ]
     serializer_class = PostSerializer
 
@@ -22,7 +23,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
-        IsOwnerOrReadOnly
+        IsOwnerOrReadOnly,
     ]
     serializer_class = CommentSerializer
 

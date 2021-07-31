@@ -1,11 +1,11 @@
-### User [x]
+### User
 
 - [x] Login
 - [x] Register
 - [x] Logout
 - [x] Add Comment
 
-### Blogger [ ]
+### Blogger
 
 - [x] Add Post
 - [x] Remove Post
@@ -13,7 +13,7 @@
 - [ ] Remove Comment
 - [ ] Implement Blogger Role
 
-### Blog [ ]
+### Blog
 
 - [x] Auth
 - [x] Posts

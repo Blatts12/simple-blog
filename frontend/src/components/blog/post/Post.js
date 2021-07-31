@@ -9,7 +9,7 @@ import EditPostFrom from "./EditPostForm";
 const Post = (props) => {
   const dispatch = useDispatch();
   const postId = props.match.params.id;
-  const userId = useSelector((state) => state.auth.user.id);
+  const auth = useSelector((state) => state.auth, shallowEqual);
   const post = useSelector((state) => state.post, shallowEqual);
   const [showEdit, setShowEdit] = useState(false);
 
@@ -21,7 +21,7 @@ const Post = (props) => {
     <>
       {post && (
         <Container>
-          {post.author.id === userId && (
+          {auth.isAuthorized && post.author.id === auth.user.id && (
             <Button onClick={() => setShowEdit(!showEdit)}>
               {showEdit ? "Close" : "Edit"}
             </Button>

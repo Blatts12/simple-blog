@@ -30,6 +30,12 @@ const Header = () => {
     </>
   );
 
+  const bloggerLinks = (
+    <Link className="nav-link active" to="/post">
+      Add post
+    </Link>
+  );
+
   return (
     <Navbar collapseOnSelect bg="dark" variant="dark" expand="sm">
       <Container fluid="sm">
@@ -40,12 +46,9 @@ const Header = () => {
         <Navbar.Collapse id="navbar-toggle">
           <Nav className="me-auto">
             {isAuthenticated ? authLinks : guestLinks}
-            <Link className="nav-link active" to="/post/4">
-              TestPost
-            </Link>
-            <Link className="nav-link active" to="/post">
-              AddPost
-            </Link>
+            {(user?.groups?.some((g) => g.name === "Blogger") ||
+              user?.is_staff) &&
+              bloggerLinks}
           </Nav>
         </Navbar.Collapse>
       </Container>
