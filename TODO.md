@@ -1,22 +1,23 @@
-### User
+### User [x]
 
-- Login
-- Register
-- Logout
-- Add Comment
+- [x] Login
+- [x] Register
+- [x] Logout
+- [x] Add Comment
 
-### Blogger
+### Blogger [ ]
 
-- Add Post
-- Remove Post
-- Edit Post
-- Remove Comment
+- [x] Add Post
+- [x] Remove Post
+- [x] Edit Post
+- [ ] Remove Comment
+- [ ] Implement Blogger Role
 
-### Blog
+### Blog [ ]
 
-- Auth
-- Posts
-  - Markdown
-  - Text
-  - Images
-- Comments
+- [x] Auth
+- [x] Posts
+  - [x] Markdown
+  - [x] Text
+  - [ ] Images
+- [x] Comments
