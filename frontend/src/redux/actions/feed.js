@@ -1,10 +1,12 @@
 import axios from "axios";
 import { dispatchErrors } from "./auth";
-import { GET_FEED } from "./types";
+import { GET_FEED, LOADING_FEED } from "./types";
 
 export const loadFeed =
   (link = "/api/feed") =>
   (dispatch) => {
+    dispatch({ type: LOADING_FEED });
+
     axios
       .get(link)
       .then((res) => {

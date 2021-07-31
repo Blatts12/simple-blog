@@ -11,6 +11,7 @@ import { loadUser } from "../redux/actions/auth";
 import Toasts from "./layout/Toasts";
 import Post from "./blog/post/Post";
 import AddPostForm from "./blog/post/AddPostForm";
+import BloggerRoute from "./common/BloggerRoute";
 
 const App = () => {
   useEffect(() => {
@@ -26,7 +27,7 @@ const App = () => {
           <Route exact path="/" component={Feed} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/post" component={AddPostForm} />
+          <BloggerRoute exact path="/post" component={AddPostForm} />
           <Route exact path="/post/:id" component={Post} />
         </>
       </Router>

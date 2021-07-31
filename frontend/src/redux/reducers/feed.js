@@ -1,6 +1,13 @@
-import { GET_FEED } from "../actions/types";
+import { GET_FEED, LOADING_FEED } from "../actions/types";
 
-const initialState = null;
+const initialState = {
+  count: 0,
+  next: null,
+  previous: null,
+  results: [],
+  current: null,
+  isLoading: false,
+};
 
 const feedReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -8,6 +15,11 @@ const feedReducer = (state = initialState, action) => {
       return {
         ...action.payload,
         current: action.link,
+        isLoading: false,
+      };
+    case LOADING_FEED:
+      return {
+        isLoading: true,
       };
     default:
       return state;

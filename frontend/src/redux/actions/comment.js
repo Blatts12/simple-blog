@@ -1,7 +1,7 @@
 import axios from "axios";
 import { dispatchErrors, tokenConfig } from "./auth";
 import { pushMsg } from "./msg";
-import { CREATE_COMMENT, GET_COMMENT_FEED } from "./types";
+import { CREATE_COMMENT, GET_COMMENT_FEED, REMOVE_COMMENT } from "./types";
 
 export const loadComments =
   (postId, link = null) =>
@@ -37,3 +37,18 @@ export const addComment =
         dispatchErrors(dispatch, "error", err.response.data);
       });
   };
+
+export const removeComment = (commentId) => (dispatch, getState) => {
+  axios
+    .delete(`/api/comment/${commentId}/`, tokenConfig(getState))
+    .then((res) => {
+      dispatch(pushMsg("success", "Comment Removed"));
+      dispatch({
+        type: REMOVE_COMMENT,
+        payload: commentId,
+      });
+    })
+    .catch((err) => {
+      dispatchErrors(dispatch, "error", err.response.data);
+    });
+};

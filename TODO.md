@@ -10,8 +10,8 @@
 - [x] Add Post
 - [x] Remove Post
 - [x] Edit Post
-- [ ] Remove Comment
-- [ ] Implement Blogger Role
+- [x] Remove Comment
+- [x] Implement Blogger Role
 
 ### Blog
 

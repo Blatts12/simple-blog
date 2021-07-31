@@ -16,24 +16,30 @@ const Feed = () => {
 
   return (
     <Container>
-      {feed ? (
-        <>
-          <MemoziedFeedToolbar
-            prevLink={feed.previous}
-            currentLink={feed.current}
-            nextLink={feed.next}
-          />
-          {feed.results.map((post) => (
-            <FeedElement post={post} key={post.id} />
-          ))}
-          <MemoziedFeedToolbar
-            prevLink={feed.previous}
-            currentLink={feed.current}
-            nextLink={feed.next}
-          />
-        </>
+      {feed.isLoading ? (
+        <h2>Loading feed!</h2>
       ) : (
-        "No feed"
+        <>
+          {feed ? (
+            <>
+              <MemoziedFeedToolbar
+                prevLink={feed.previous}
+                currentLink={feed.current}
+                nextLink={feed.next}
+              />
+              {feed.results.map((post) => (
+                <FeedElement post={post} key={post.id} />
+              ))}
+              <MemoziedFeedToolbar
+                prevLink={feed.previous}
+                currentLink={feed.current}
+                nextLink={feed.next}
+              />
+            </>
+          ) : (
+            "No feed"
+          )}
+        </>
       )}
     </Container>
   );

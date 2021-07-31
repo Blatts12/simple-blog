@@ -1,9 +1,11 @@
 import axios from "axios";
 import { dispatchErrors, tokenConfig } from "./auth";
 import { pushMsg } from "./msg";
-import { CREATE_POST, GET_POST, UPDATE_POST } from "./types";
+import { CREATE_POST, GET_POST, LOADING_POST, UPDATE_POST } from "./types";
 
 export const loadPost = (id) => (dispatch) => {
+  dispatch({ type: LOADING_POST });
+
   axios
     .get(`/api/post/${id}`)
     .then((res) => {
