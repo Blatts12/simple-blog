@@ -42,7 +42,7 @@ const Login = () => {
             value={username}
           />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="mt-1">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -52,13 +52,12 @@ const Login = () => {
             value={password}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className="mt-2">
           Login
         </Button>
       </Form>
-      <p>
-        Don't have an account?
-        <Link to="/register">Register</Link>
+      <p className="mt-2">
+        Don't have an account? <Link to="/register">Register</Link>
       </p>
     </Container>
   );

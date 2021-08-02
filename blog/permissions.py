@@ -14,4 +14,30 @@ class IsBloggerOrIsStaffOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
 
-        return request.user.groups.all().filter(name="Blogger").exists() or request.user.is_staff
+        return bool(
+            request.user.is_staff or
+            request.user.groups.all().filter(name="Blogger").exists()
+        )
+
+
+class IsStaffOrIsOwnerOrReadOnly(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        return bool(
+            request.user.is_staff or
+            obj.author.id == request.user.id
+        )
+
+
+class IsBloggerOrIsStaffOrIsOwnerToDelete(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.method == 'DELETE':
+            return bool(
+                request.user.is_staff or
+                obj.author.id == request.user.id or
+                request.user.groups.all().filter(name="Blogger").exists()
+            )
+
+        return True

@@ -1,4 +1,4 @@
-import { GET_FEED, LOADING_FEED } from "../actions/types";
+import { GET_FEED, LOADING_FEED, REMOVE_POST } from "../actions/types";
 
 const initialState = {
   count: 0,
@@ -15,6 +15,15 @@ const feedReducer = (state = initialState, action) => {
       return {
         ...action.payload,
         current: action.link,
+        isLoading: false,
+      };
+    case REMOVE_POST:
+      return {
+        ...state,
+        count: state.count - 1,
+        results: state.results.filter(
+          (result) => result.id !== action.payload.id
+        ),
         isLoading: false,
       };
     case LOADING_FEED:

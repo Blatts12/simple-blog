@@ -28,6 +28,7 @@ export const GET_POST = "GET_POST";
 export const CREATE_POST = "CREATE_POST";
 export const REMOVE_POST = "REMOVE_POST";
 export const UPDATE_POST = "UPDATE_POST";
+export const CLEAR_POST = "CLEAR_POST";
 
 // COMMENT
 export const LOADING_COMMENT = "LOADING_COMMENT";

@@ -48,7 +48,7 @@ const Register = () => {
             value={username}
           />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="mt-1">
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
@@ -58,7 +58,7 @@ const Register = () => {
             value={email}
           />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="mt-1">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -68,7 +68,7 @@ const Register = () => {
             value={password}
           />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="mt-1">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             type="password"
@@ -78,13 +78,12 @@ const Register = () => {
             value={password2}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className="mt-2">
           Register
         </Button>
       </Form>
-      <p>
-        Already have an account?
-        <Link to="/login">Login</Link>
+      <p className="mt-2">
+        Already have an account? <Link to="/login">Login</Link>
       </p>
     </Container>
   );

@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { loadFeed } from "../../../redux/actions/feed";
 import FeedElement from "./FeedElement";
-import { MemoziedFeedToolbar } from "./FeedToolbar";
+import PageButtons from "../../common/PageButtons";
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -20,24 +20,20 @@ const Feed = () => {
         <h2>Loading feed!</h2>
       ) : (
         <>
-          {feed ? (
+          {feed.count > 0 ? (
             <>
-              <MemoziedFeedToolbar
-                prevLink={feed.previous}
-                currentLink={feed.current}
-                nextLink={feed.next}
-              />
               {feed.results.map((post) => (
                 <FeedElement post={post} key={post.id} />
               ))}
-              <MemoziedFeedToolbar
+              <PageButtons
                 prevLink={feed.previous}
                 currentLink={feed.current}
                 nextLink={feed.next}
+                loadingFunc={loadFeed}
               />
             </>
           ) : (
-            "No feed"
+            <h1>No feed</h1>
           )}
         </>
       )}

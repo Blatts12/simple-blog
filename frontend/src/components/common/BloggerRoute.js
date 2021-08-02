@@ -1,9 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { shallowEqual, useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
 const BloggerRoute = ({ component: Component, ...rest }) => {
-  const auth = useSelector((state) => state.auth);
+  const auth = useSelector((state) => state.auth, shallowEqual);
 
   return (
     <Route
@@ -13,10 +13,13 @@ const BloggerRoute = ({ component: Component, ...rest }) => {
           return <h2>Loading</h2>;
         } else if (!auth.isAuthenticated) {
           return <Redirect to="/login" />;
-        } else if (!auth.user.groups.some((g) => g.name === "Blogger")) {
-          return <Redirect to="/" />;
-        } else {
+        } else if (
+          auth.user.groups.some((g) => g.name === "Blogger") ||
+          auth.user.is_staff
+        ) {
           return <Component {...props} />;
+        } else {
+          return <Redirect to="/" />;
         }
       }}
     />

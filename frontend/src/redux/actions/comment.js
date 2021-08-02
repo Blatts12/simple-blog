@@ -21,26 +21,24 @@ export const loadComments =
       });
   };
 
-export const addComment =
-  ({ postId, content }) =>
-  (dispatch, getState) => {
-    axios
-      .post("/api/comment/", { post: postId, content }, tokenConfig(getState))
-      .then((res) => {
-        dispatch(pushMsg("success", "Comment Added"));
-        dispatch({
-          type: CREATE_COMMENT,
-          payload: res.data,
-        });
-      })
-      .catch((err) => {
-        dispatchErrors(dispatch, "error", err.response.data);
-      });
-  };
-
-export const removeComment = (commentId) => (dispatch, getState) => {
+export const addComment = (comment) => (dispatch, getState) => {
   axios
-    .delete(`/api/comment/${commentId}/`, tokenConfig(getState))
+    .post("/api/comment/", comment, tokenConfig(getState))
+    .then((res) => {
+      dispatch(pushMsg("success", "Comment Added"));
+      dispatch({
+        type: CREATE_COMMENT,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatchErrors(dispatch, "error", err.response.data);
+    });
+};
+
+export const removeComment = (comment) => (dispatch, getState) => {
+  axios
+    .delete(`/api/comment/${comment.id}/`, tokenConfig(getState))
     .then((res) => {
       dispatch(pushMsg("success", "Comment Removed"));
       dispatch({

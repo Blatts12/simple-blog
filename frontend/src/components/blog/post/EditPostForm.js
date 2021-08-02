@@ -5,13 +5,14 @@ import { pushMsg } from "../../../redux/actions/msg";
 import { updatePost } from "../../../redux/actions/post";
 import PostForm from "./PostForm";
 
-const EditPostFrom = ({ post }) => {
+const EditPostFrom = ({ post, onEdit }) => {
   const dispatch = useDispatch();
 
   const onSubmit = (title, content, e) => {
     e.preventDefault();
     if (title && content) {
       dispatch(updatePost({ ...post, title, content }));
+      onEdit();
     } else {
       dispatch(pushMsg("info", "Fill empty fields"));
     }

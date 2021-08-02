@@ -1,7 +1,14 @@
 import axios from "axios";
 import { dispatchErrors, tokenConfig } from "./auth";
 import { pushMsg } from "./msg";
-import { CREATE_POST, GET_POST, LOADING_POST, UPDATE_POST } from "./types";
+import {
+  CREATE_POST,
+  GET_POST,
+  LOADING_FEED,
+  LOADING_POST,
+  REMOVE_POST,
+  UPDATE_POST,
+} from "./types";
 
 export const loadPost = (id) => (dispatch) => {
   dispatch({ type: LOADING_POST });
@@ -42,6 +49,23 @@ export const updatePost = (post) => (dispatch, getState) => {
       dispatch({
         type: UPDATE_POST,
         payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatchErrors(dispatch, "danger", err.response.data);
+    });
+};
+
+export const removePost = (post) => (dispatch, getState) => {
+  dispatch({ type: LOADING_FEED });
+
+  axios
+    .delete(`/api/post/${post.id}`, tokenConfig(getState))
+    .then((res) => {
+      dispatch(pushMsg("success", "Post Updated"));
+      dispatch({
+        type: REMOVE_POST,
+        payload: post,
       });
     })
     .catch((err) => {

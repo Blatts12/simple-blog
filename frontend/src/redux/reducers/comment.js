@@ -10,6 +10,7 @@ const initialState = {
   next: null,
   previous: null,
   results: [],
+  current: null,
   isLoading: false,
 };
 
@@ -18,6 +19,7 @@ const commentReducer = (state = initialState, action) => {
     case GET_COMMENT_FEED:
       return {
         ...action.payload,
+        current: action.link,
         isLoading: false,
       };
     case CREATE_COMMENT:

@@ -4,6 +4,7 @@ import {
   LOADING_POST,
   REMOVE_POST,
   UPDATE_POST,
+  CLEAR_POST,
 } from "../actions/types";
 
 const initialState = {
@@ -25,6 +26,7 @@ const postReducer = (state = initialState, action) => {
         ...action.payload,
         isLoading: false,
       };
+    case CLEAR_POST:
     case REMOVE_POST:
       return initialState;
     case LOADING_POST:

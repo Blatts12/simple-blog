@@ -27,7 +27,7 @@ const App = () => {
           <Route exact path="/" component={Feed} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <BloggerRoute exact path="/post" component={AddPostForm} />
+          <BloggerRoute exact path="/add_post" component={AddPostForm} />
           <Route exact path="/post/:id" component={Post} />
         </>
       </Router>

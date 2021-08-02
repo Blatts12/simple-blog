@@ -17,16 +17,16 @@ const CommentForm = ({ postId }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (content) {
-      dispatch(addComment({ postId, content }));
+      dispatch(addComment({ post: postId, content }));
+      setContent("");
     } else {
       dispatch(pushMsg("info", "Fill empty fields"));
     }
   };
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit} className="mb-3">
       <Form.Group>
-        <Form.Label>Comment{` [${content.length}/256]`}</Form.Label>
         <Form.Control
           as="textarea"
           maxLength="256"
@@ -35,7 +35,10 @@ const CommentForm = ({ postId }) => {
           value={content}
         />
       </Form.Group>
-      <Button type="submit">Add Comment</Button>
+      <div className="d-flex justify-content-between mb-2">
+        <Form.Label>Comment{` [${content.length}/256]`}</Form.Label>
+        <Button type="submit">Add Comment</Button>
+      </div>
     </Form>
   );
 };

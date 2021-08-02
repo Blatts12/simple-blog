@@ -23,15 +23,21 @@ const Header = () => {
 
   const authLinks = (
     <>
-      <Button variant="info" onClick={() => dispatch(logout())}>
+      <a
+        className="nav-link active"
+        style={{ cursor: "pointer" }}
+        onClick={() => dispatch(logout())}
+      >
         Logout
-      </Button>
-      <Navbar.Text>{user && user.username}</Navbar.Text>
+      </a>
+      <Navbar.Text className="ms-2">
+        {user && ` Logged in as ${user.username}`}
+      </Navbar.Text>
     </>
   );
 
   const bloggerLinks = (
-    <Link className="nav-link active" to="/post">
+    <Link className="nav-link active" to="/add_post">
       Add post
     </Link>
   );
@@ -42,14 +48,12 @@ const Header = () => {
         <Link className="navbar-brand" to="/">
           Simple Blog
         </Link>
-        <Navbar.Toggle aria-controls="navbar-toggle" />
-        <Navbar.Collapse id="navbar-toggle">
-          <Nav className="me-auto">
-            {isAuthenticated ? authLinks : guestLinks}
-            {(user?.groups?.some((g) => g.name === "Blogger") ||
-              user?.is_staff) &&
-              bloggerLinks}
-          </Nav>
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end">
+          {(user?.groups?.some((g) => g.name === "Blogger") ||
+            user?.is_staff) &&
+            bloggerLinks}
+          {isAuthenticated ? authLinks : guestLinks}
         </Navbar.Collapse>
       </Container>
     </Navbar>
