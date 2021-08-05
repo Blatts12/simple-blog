@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "../redux/store";
 import Header from "./layout/Header";
@@ -20,7 +20,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <Router>
+      <HashRouter>
         <>
           <Toasts />
           <Header />
@@ -30,7 +30,7 @@ const App = () => {
           <BloggerRoute exact path="/add_post" component={AddPostForm} />
           <Route exact path="/post/:id" component={Post} />
         </>
-      </Router>
+      </HashRouter>
     </Provider>
   );
 };
